@@ -13,24 +13,27 @@ library(gridExtra)
 dt = read.csv('pseudo_facebook.tsv', sep = '\t')
 qplot(x = dob_day, data = dt, color = I('black'), fill = I('#099DD9')) + scale_x_discrete(1:31)
 ```
+![figure1](./Figure/1.png) 
 
 ## Faceting
 ```{r,}
 qplot(x = dob_day, data = dt, color = I('black'), fill = I('#099DD9')) + scale_x_discrete(1:31) +
         facet_wrap(~dob_month, ncol = 3)
 ```
-
+![figure2](./Figure/2.png) 
 
 ## Friend Count
 ```{r,}
 qplot(x = friend_count , data = dt, color = I('black'), fill = I('#099DD9'))
 ```
+![figure3](./Figure/3.png) 
 
 ## Limiting the area
 ```{r,}
 qplot(x = friend_count , data = dt, color = I('black'), fill = I('#099DD9')) +
         scale_x_continuous(limits = c(0, 1000))
 ```
+![figure4](./Figure/4.png) 
 
 ## Adjusting the bin width
 ```{r,}
@@ -38,6 +41,7 @@ qplot(x = friend_count , data = subset(dt, !is.na(gender)), color = I('black'), 
         scale_x_continuous(limits = c(0, 1000), breaks = seq(0,1000,50)) +
         facet_wrap(~gender)
 ```
+![figure5](./Figure/5.png) 
 
 ## Statistics 'y' gender
 ```{r,}
@@ -50,6 +54,7 @@ qplot(x = tenure/365, data = dt, binwidth = .25, color = I('black'), fill = I('#
         scale_x_continuous(breaks = seq(1,7,1), limits = c(0,7)) +
         labs(x = 'Number of years using Facebook', y = 'Number of users in sample')
 ```
+![figure6](./Figure/6.png) 
 
 ## Age
 ```{r,}
@@ -57,6 +62,7 @@ qplot(x = age, data = dt, binwidth = 1, color = I('black'), fill = I('#099DD9'))
         scale_x_continuous(breaks = seq(0,113,5)) +
         labs(x = 'Age of Facebook users', y = 'Number of users in sample')
 ```
+![figure7](./Figure/7.png) 
 
 ## Transform & visualize data
 ```{r,}
@@ -67,6 +73,7 @@ f3 = f1 + scale_x_sqrt()
 
 grid.arrange(f1,f2,f3, ncol = 1)
 ```
+![figure8](./Figure/8.png) 
 
 ## Frequency polygon
 ```{r,}
@@ -77,6 +84,7 @@ qplot(x = friend_count, y = ..count../sum(..count..),
         labs(x = 'Friend count', y = 'Propertion of users friend count')
         scale_x_continuous(limits = c(0, 1000), breaks = seq(0,1000,50))
 ```
+![figure9](./Figure/9.png) 
 
 ## Frequency polygon 2
 ```{r,}
@@ -85,6 +93,7 @@ qplot(x = www_likes, data = subset(dt, !is.na(gender)),
         labs(x = 'Friend count', y = 'Propertion of users friend count') +
         scale_x_log10()
 ```
+![figure10](./Figure/10.png) 
 
 ## Box plot
 ```{r,}
@@ -93,5 +102,5 @@ qplot(x = gender, y = friend_count, data = subset(dt, !is.na(gender)),
        geom = 'boxplot') +
        coord_cartesian(ylim = c(0,1000))
 ```
+![figure11](./Figure/11.png) 
 
-\
